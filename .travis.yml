@@ -18,3 +18,16 @@ after_success:
   - docker push hamzaabamboo/multi-server
   - docker push hamzaabamboo/multi-worker
   - docker push hamzaabamboo/multi-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: docker-complex-udemy-thing
+  env: DockerComplexUdemyThing-env
+  bucket_name: elasticbeanstalk-us-east-2-072979993612
+  bucket_path: docker-complex
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
